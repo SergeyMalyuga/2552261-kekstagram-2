@@ -1,3 +1,5 @@
+const PHOTOAS_RANDOM_COUNT = 10;
+
 function getRandomInteger(a, b) {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -23,6 +25,24 @@ function convertPercentageToNumber(percentageString) {
   return number;
 }
 
+function comparedDiscussedFilter(a, b) {
+  return b.comments.length - a.comments.length;
+}
+
+function getRandomElements(array) {
+  const set = new Set();
+  let count;
+  if (array.length < PHOTOAS_RANDOM_COUNT) {
+    count = array.length;
+  } else {
+    count = PHOTOAS_RANDOM_COUNT;
+  }
+  while(set.size !== count) {
+    set.add(getRandomArrayElement(array));
+  }
+  return set;
+}
+
 const isEscKeyDown = (evt) => evt.key === 'Escape';
 
-export {getRandomInteger, getRandomArrayElement, isEscKeyDown, addHidden, removeHidden, convertPercentageToNumber};
+export {getRandomInteger, getRandomArrayElement, isEscKeyDown, addHidden, removeHidden, convertPercentageToNumber, comparedDiscussedFilter, getRandomElements};
